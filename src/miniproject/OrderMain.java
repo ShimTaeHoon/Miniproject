@@ -1,6 +1,10 @@
 package miniproject;
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.time.LocalDateTime;
@@ -20,7 +24,7 @@ public class OrderMain {
 		
 		FileOutputStream fos = new FileOutputStream("order.txt");
 		OutputStreamWriter bos = new OutputStreamWriter(fos);
-
+		
 		System.out.println("1. 상품 주문하기");
 		System.out.println("2. 전체 주문 이력 보기");
 		System.out.println("3. 고객별 주문 이력 보기");
@@ -62,7 +66,14 @@ public class OrderMain {
 				System.out.println("주문이 완료되었습니다!");
 			
 			} else if(option.equals("2")) {
-				System.out.println("2번 테스트");
+				FileReader fr = new FileReader("order.txt");
+				BufferedReader br = new BufferedReader(fr);
+				String line;
+				
+				while((line = br.readLine()) != null) {
+					System.out.println(line);
+				}
+				
 			} else if(option.equals("5")) {
 				System.out.println("프로그램을 종료합니다...");
 				break;
