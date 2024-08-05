@@ -18,21 +18,21 @@ public class OrderMain {
 		
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Customer> cus = new ArrayList<>();
-		
-		
+	
 		FileOutputStream fos = new FileOutputStream("order.txt");
 		OutputStreamWriter bos = new OutputStreamWriter(fos);
 		
-		System.out.println("1. 상품 주문하기");
-		System.out.println("2. 전체 주문 이력 보기");
-		System.out.println("3. 고객별 주문 이력 보기");
-		System.out.println("4. 특정날짜에 들어온 주문이력 보기");
-		System.out.println("5. 끝내기");
+	
 		
 		while(true) {
+			System.out.println("1. 상품 주문하기");
+			System.out.println("2. 전체 주문 이력 보기");
+			System.out.println("3. 고객별 주문 이력 보기");
+			System.out.println("4. 특정날짜에 들어온 주문이력 보기");
+			System.out.println("5. 끝내기");
 			
 			System.out.print("옵션을 선택하세요: ");
-			String option = scanner.nextLine();
+			String option = scanner.nextLine();		
 			
 			if(option.equals("1")) {
 				System.out.print("고객명: ");
@@ -71,6 +71,58 @@ public class OrderMain {
 				while((line = br.readLine()) != null) {
 					System.out.println(line);
 				}
+				
+			} else if(option.equals("3")) {
+				System.out.println("고객명: ");
+				String cusNameOutput = scanner.nextLine();
+				
+				FileReader fr = new FileReader("order.txt");
+				BufferedReader br = new BufferedReader(fr);
+				String line;
+				int orderCount = 0;
+				int orderPrice = 0;
+				
+				while((line = br.readLine()) != null) {
+										
+					if(line.contains(", 고객명: " + cusNameOutput)) {
+						orderCount++;
+						
+						String[] splitOrder = line.split(",");
+//						System.out.println(Arrays.toString(splitOrder));
+						String[] arr = splitOrder[4].split(":");
+//						System.out.println(Arrays.toString(arr));
+						
+						orderPrice = orderPrice + Integer.parseInt(arr[1].trim());
+									
+					}
+				}
+				
+				System.out.println("전체 주문 건수: " + orderCount);
+				System.out.println("전체 주문 금액: " + orderPrice);
+				
+			} else if(option.equals("4")) {
+				System.out.println("날짜: ");
+				String cusDateOutput = scanner.nextLine();
+				
+				FileReader fr = new FileReader("order.txt");
+				BufferedReader br = new BufferedReader(fr);
+				String line;
+				String orderDate = "";
+				
+				while((line = br.readLine()) != null) {
+					
+					if(line.contains(cusDateOutput)) {
+						
+						String[] splitDate = line.split(",");
+						String[] arr = splitDate[5].split(":");
+						orderDate = line;
+						
+						System.out.println(orderDate);
+						
+					}
+				}
+				
+			
 				
 			} else if(option.equals("5")) {
 				System.out.println("프로그램을 종료합니다...");
