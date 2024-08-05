@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 class OrderNo {
 			
-	int OrderNo() throws IOException {
+	int getOrderNo() throws IOException {
 		
 		int getOrderNo = 1;
 		
@@ -44,7 +44,7 @@ public class OrderMain {
 
 		OrderNo order = new OrderNo();
 		
-		orderNo = order.OrderNo();
+		orderNo = order.getOrderNo();
 		
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Customer> cus = new ArrayList<>();
