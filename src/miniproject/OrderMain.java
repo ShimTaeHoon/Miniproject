@@ -12,7 +12,9 @@ import java.util.Scanner;
 
 class OrderNo {
 			
-	int OrderNo() throws IOException{
+	int OrderNo() throws IOException {
+		
+		int getOrderNo = 1;
 		
 		FileReader fr = new FileReader("order.txt");
 		BufferedReader br = new BufferedReader(fr);
@@ -22,11 +24,11 @@ class OrderNo {
 			String[] noSplit = orderLine.split(",");
 			String[] arr = noSplit[0].split(":");
 			
-//			orderNo = Integer.parseInt(arr[1].trim());
+			getOrderNo = Integer.parseInt(arr[1].trim());
 			
 		}
 		
-//		return orderNo;
+		return getOrderNo;
 		
 	}
 
@@ -36,13 +38,13 @@ class OrderNo {
 
 public class OrderMain {
 
-	static int orderNo = 1;
+	static int orderNo;
 	
 	public static void main(String[] args) throws IOException {
 
 		OrderNo order = new OrderNo();
 		
-		orderNo = order.OrderNo() + 1;
+		orderNo = order.OrderNo();
 		
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Customer> cus = new ArrayList<>();
@@ -53,9 +55,7 @@ public class OrderMain {
 		OrderPrint op = new OrderPrint();
 		OrderCustomer oc = new OrderCustomer();
 		OrderDate od = new OrderDate();
-
-		int orderNo = 0;
-		
+				
 		while (true) {
 			System.out.println("1. 상품 주문하기");
 			System.out.println("2. 전체 주문 이력 보기");
@@ -86,12 +86,12 @@ public class OrderMain {
 
 				scanner.nextLine();
 
-				Customer order = new Customer((orderNo++), cusName, proName, proQuan, price, formatDate);
-				cus.add(order);
-				bos.write(order.toString() + '\n');
+				Customer orderInfo = new Customer((orderNo++), cusName, proName, proQuan, price, formatDate);
+				cus.add(orderInfo);
+				bos.write(orderInfo.toString() + '\n');
 				bos.flush();
 
-				System.out.println(order.toString());
+				System.out.println(orderInfo.toString());
 
 				System.out.println("주문이 완료되었습니다!");
 
