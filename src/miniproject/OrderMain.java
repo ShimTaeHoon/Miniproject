@@ -22,8 +22,6 @@ public class OrderMain {
 		FileOutputStream fos = new FileOutputStream("order.txt");
 		OutputStreamWriter bos = new OutputStreamWriter(fos);
 		
-	
-		
 		while(true) {
 			System.out.println("1. 상품 주문하기");
 			System.out.println("2. 전체 주문 이력 보기");
