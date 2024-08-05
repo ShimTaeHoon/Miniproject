@@ -122,8 +122,6 @@ public class OrderMain {
 					}
 				}
 				
-			
-				
 			} else if(option.equals("5")) {
 				System.out.println("프로그램을 종료합니다...");
 				break;
@@ -165,7 +163,7 @@ class Customer {
 	@Override
 	public String toString() {
 		return "주문번호: " + orderNo + ", 고객명: " + cusName + ", 제품명: " + proName + ", 주문수량: "
-				+ orderQuan + ", 가격: " + price + ", 주문일시: " + date + "]";
+				+ orderQuan + ", 가격: " + price + ", 주문일시: " + date;
 	}
 
 }
