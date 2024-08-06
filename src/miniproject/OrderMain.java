@@ -183,9 +183,9 @@ class OrderDate {
 
 			if (orderDate.contains(cusDateOutput)) {
 
-				String[] splitDate = orderDate.split(",");
-				String[] arr = splitDate[5].split(":");
-
+//				String[] splitDate = orderDate.split(",");
+//				String[] arr = splitDate[5].split(":");
+			
 				System.out.println(orderDate);
 
 			}
