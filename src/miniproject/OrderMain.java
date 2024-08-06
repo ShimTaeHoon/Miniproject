@@ -3,8 +3,10 @@ package miniproject;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,8 +33,14 @@ class OrderNo {
 		return getOrderNo;
 		
 	}
-
-
+	
+	void updateOrderNo(int newOrderNo) throws IOException {
+		FileWriter fw = new FileWriter("order.txt", true);
+		PrintWriter pw = new PrintWriter(fw);
+		
+		pw.println("주문번호: " + newOrderNo);
+		
+	}
 	
 }
 
@@ -86,10 +94,11 @@ public class OrderMain {
 
 				scanner.nextLine();
 
-				Customer orderInfo = new Customer((orderNo++), cusName, proName, proQuan, price, formatDate);
+				Customer orderInfo = new Customer(++orderNo, cusName, proName, proQuan, price, formatDate);
 				cus.add(orderInfo);
 				bos.write(orderInfo.toString() + '\n');
 				bos.flush();
+				order.updateOrderNo(orderNo);
 
 				System.out.println(orderInfo.toString());
 
@@ -194,4 +203,3 @@ class OrderDate {
 	}
 	
 }
-
